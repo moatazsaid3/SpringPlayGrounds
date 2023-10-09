@@ -1,5 +1,6 @@
 package com.moataz.springplaygrounds.controller;
 
+import com.moataz.springplaygrounds.annotations.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,12 +8,13 @@ import java.util.*;
 import com.moataz.springplaygrounds.service.personService;
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/persons") // http://localhost:3000/persons
 public class personController {
     @Autowired
     private personService personService ;
     // Get all users
     @GetMapping
+    @Timed
     public List<Person> getPerson(){
         return personService.get();
     }

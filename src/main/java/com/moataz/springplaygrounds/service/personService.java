@@ -34,6 +34,4 @@ public class personService {
         l1.remove(id);
         return l1;
     }
-
-
 }
