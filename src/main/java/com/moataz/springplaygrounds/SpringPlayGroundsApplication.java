@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringPlayGroundsApplication {
     public static void main(String []args){
 
-        var context = SpringApplication.run(SpringPlayGroundsApplication.class,args);
+         SpringApplication.run(SpringPlayGroundsApplication.class,args);
 
     }
 }
