@@ -20,24 +20,7 @@ public class UserService {
         return users;
     }
     public List<User> create(User user) {
-
-//        //Create an Errors object
-//        Errors errors = new BeanPropertyBindingResult(user, "user");
-//
-//        //Invoke the validate method on the validator
-//        userValidator.validate(user, errors);
-//
-//        //Print the validation errors
-//        if (errors.hasErrors()) {
-//            log.info("Person has " + errors.getErrorCount() + " errors");
-//            for (ObjectError error : errors.getAllErrors()) {
-//                log.info(error.getCode() + " - " + error.getDefaultMessage());
-//            }
-//        } else {
-//            System.out.println("Person is valid");
-            users.add(user);
-//        }
-
+        users.add(user);
         return users;
     }
 

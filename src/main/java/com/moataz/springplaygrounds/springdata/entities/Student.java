@@ -1,6 +1,9 @@
 package com.moataz.springplaygrounds.springdata.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -34,7 +37,9 @@ public class Student {
     private String phoneNumber;
     @Column(name = "student_nat_id")
     private String natID;
-    @ManyToMany(mappedBy = "students",fetch = FetchType.EAGER)
+
+
+    @ManyToMany(mappedBy = "students")
     private Set<Course> Courses;
 
 }
