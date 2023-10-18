@@ -27,16 +27,16 @@ public class CourseController {
         return courseService.create(coursDTO);
     }
     @PutMapping
-    public Course updateCourse(@RequestBody  Course course){
-        return courseService.update(course);
+    public Course updateCourse(@RequestBody CourseWithInstructorDTO courseDTO){
+        return courseService.update(courseDTO);
     }
     @DeleteMapping
     public void deleteCourse(@RequestBody UUIDDTO uuidDto){
         courseService.delete(uuidDto);
     }
     @GetMapping("/courseandstudent")
-    public void getCourseWithStudent(){
-        courseService.getCourseNameandStudents();
+    public List<CourseNameAndStudentsDTO> getCourseWithStudent(){
+      return  courseService.getCourseNameandStudents();
 
     }
 

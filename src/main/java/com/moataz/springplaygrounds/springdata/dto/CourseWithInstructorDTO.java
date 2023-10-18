@@ -1,13 +1,16 @@
 package com.moataz.springplaygrounds.springdata.dto;
 
 import com.moataz.springplaygrounds.springdata.entities.Course;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 public class CourseWithInstructorDTO {
+    private UUID id;
     private String name;
     private Timestamp startDate;
     private Timestamp endDate;
@@ -16,7 +19,9 @@ public class CourseWithInstructorDTO {
     private UUID instructor;
 
     public Course getCourse(){
+
         Course course  =  new Course();
+        course.setId(this.id);
         course.setName(this.name);
         course.setStartDate(this.startDate);
         course.setEndDate(this.endDate);

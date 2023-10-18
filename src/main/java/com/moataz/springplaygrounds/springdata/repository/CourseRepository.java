@@ -18,6 +18,6 @@ public interface CourseRepository extends JpaRepository<Course, UUID> {
             join c.students s 
             """
     )
-    List<String> getCourseNameAndStudentsAdvanced();
+    List<Object[]> getCourseNameAndStudentsAdvanced();
 //    [[math,david],[physics,atef]]
 }
