@@ -1,6 +1,7 @@
 package com.moataz.springplaygrounds.springdata.controller;
 
 import com.moataz.springplaygrounds.SpringTut.annotations.Timed;
+import com.moataz.springplaygrounds.springdata.dto.InstructorStudentCourseDTO;
 import com.moataz.springplaygrounds.springdata.dto.UUIDDTO;
 import com.moataz.springplaygrounds.springdata.entities.Instructor;
 import com.moataz.springplaygrounds.springdata.service.InstructorService;
@@ -45,5 +46,9 @@ public class InstructorController {
     @DeleteMapping
     public void deleteInstructor(@RequestBody UUIDDTO uuidDTO){
          instructorService.delete(uuidDTO);
+    }
+    @GetMapping("/instructorstudentcourse")
+    public List<InstructorStudentCourseDTO> getInstructorByID(){
+        return instructorService.getInstructorStudentCourse();
     }
 }

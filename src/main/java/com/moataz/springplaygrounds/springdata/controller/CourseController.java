@@ -1,7 +1,7 @@
 package com.moataz.springplaygrounds.springdata.controller;
 
-import com.moataz.springplaygrounds.springdata.dto.CourseNameAndStudentsDTO;
-import com.moataz.springplaygrounds.springdata.dto.CourseWithInstructorDTO;
+import com.moataz.springplaygrounds.springdata.dto.CourseStudentDTO;
+import com.moataz.springplaygrounds.springdata.dto.CourseInstructorDTO;
 import com.moataz.springplaygrounds.springdata.dto.UUIDDTO;
 import com.moataz.springplaygrounds.springdata.entities.Course;
 import com.moataz.springplaygrounds.springdata.service.CourseService;
@@ -18,25 +18,30 @@ public class CourseController {
     @Autowired
     CourseService courseService;
     @GetMapping
-    public List<Course> getCourse(){
+    public List<Course> getAllCourses(){
         return courseService.get();
     }
     @PostMapping
-    public Course createCourse(@RequestBody CourseWithInstructorDTO coursDTO){
+    public Course createCourse(@RequestBody CourseInstructorDTO coursDTO){
             log.info(coursDTO);
         return courseService.create(coursDTO);
     }
     @PutMapping
-    public Course updateCourse(@RequestBody  Course course){
-        return courseService.update(course);
+    public Course updateCourse(@RequestBody CourseInstructorDTO courseDTO){
+        return courseService.update(courseDTO);
     }
     @DeleteMapping
     public void deleteCourse(@RequestBody UUIDDTO uuidDto){
         courseService.delete(uuidDto);
     }
     @GetMapping("/courseandstudent")
-    public void getCourseWithStudent(){
-        courseService.getCourseNameandStudents();
+    public List<CourseStudentDTO> getCourseWithStudent(){
+      return  courseService.getCourseNameandStudents();
+
+    }
+    @GetMapping("/courseandstudentAdvanced")
+    public List<CourseStudentDTO> getCourseWithStudentAdvanced(){
+        return  courseService.getCourseNameandStudentsAdvanced();
 
     }
 
