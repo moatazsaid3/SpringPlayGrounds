@@ -1,9 +1,17 @@
 package com.moataz.springplaygrounds.springdata.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Service
+@NoArgsConstructor
 public class CalculatorService {
 
-    public void CourseService() {
-    }
+
 
     public double add(double a, double b) {
         return a + b;
