@@ -6,21 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-@SpringBootTest
 public class CalculatorServiceTest {
 
     // AAA -> Arrange -> Action -> Assert
-    @Autowired
-    private CalculatorService calculatorService;
+    private CalculatorService calculatorService = new CalculatorService();
 
-    @Test
-    public void InstructorRepository_FindALL_ReturnMoreThanOneInstructor() {
-        double a = 10.0;
-        double b = 5.0;
-        double expected = 15.0;
-        double actual = calculatorService.add(a, b);
-        Assertions.assertEquals(expected, actual);
-    }
+
     @Test
     public void CalculatorService_Add_ReturnSumOfTwoNumbers() {
         double a = 10.0;
