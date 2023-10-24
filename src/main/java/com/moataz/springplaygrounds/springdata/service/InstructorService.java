@@ -35,15 +35,7 @@ public class InstructorService {
     }
 
     public List<InstructorStudentCourseDTO> getInstructorStudentCourse() {
-        List<String[]> listOfInstructorStudentCourseNames = instructorRepository.getInstructorNameAndCourses();
-
-        List<InstructorStudentCourseDTO> listOfDTO = new ArrayList<>();
-
-        for (String[] row : listOfInstructorStudentCourseNames) {
-            InstructorStudentCourseDTO instructorStudentCourseDTO = new InstructorStudentCourseDTO(row[0],row[1],row[2]);
-            listOfDTO.add(instructorStudentCourseDTO);
-        }
-        return listOfDTO;
+        return instructorRepository.getInstructorNameAndCourses();
     }
 
 

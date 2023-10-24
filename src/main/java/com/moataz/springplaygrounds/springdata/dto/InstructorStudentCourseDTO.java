@@ -10,6 +10,6 @@ import lombok.*;
 @Getter
 public class InstructorStudentCourseDTO {
     String instructorName;
-    String studentName;
     String courseName;
+    String studentName;
 }

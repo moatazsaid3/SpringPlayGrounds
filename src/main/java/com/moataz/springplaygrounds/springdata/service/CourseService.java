@@ -3,13 +3,11 @@ package com.moataz.springplaygrounds.springdata.service;
 import com.moataz.springplaygrounds.springdata.dto.*;
 import com.moataz.springplaygrounds.springdata.entities.Course;
 import com.moataz.springplaygrounds.springdata.entities.Instructor;
-import com.moataz.springplaygrounds.springdata.repository.CourseRepository;
+import com.moataz.springplaygrounds.springdata.dto.CourseRepository;
 import lombok.extern.log4j.Log4j2;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -58,21 +56,11 @@ public class CourseService {
         courseRepository.deleteById(UUIDDTO.getId());
     }
     public List<CourseStudentDTO> getCourseNameandStudents(){
-        List<String[]> listOfCourseNameAndStudentName = courseRepository.getCourseNameAndStudents();
-        return getCourseStudentDTOS(listOfCourseNameAndStudentName);
-    }
-    public List<CourseStudentDTO> getCourseNameandStudentsAdvanced(){
-        List<String[]> listOfCourseNameAndStudentName = courseRepository.getCourseNameAndStudentsAdvanced();
-        return getCourseStudentDTOS(listOfCourseNameAndStudentName);
-    }
-    private List<CourseStudentDTO> getCourseStudentDTOS(List<String[]> listOfCourseNameAndStudentName) {
-        List<CourseStudentDTO> listOfDTO = new ArrayList<>();
 
-        for (String[] row : listOfCourseNameAndStudentName) {
-            CourseStudentDTO courseStudentDTO = new CourseStudentDTO(row[0],row[1],row[2]);
-
-            listOfDTO.add(courseStudentDTO);
-        }
-        return listOfDTO;
+        return courseRepository.getCourseNameAndStudents();
     }
+    public List<CourseInfoDTO> getCourseStudentStartDateOnLevel(){
+        return courseRepository.getCourseNameAndStudentsAdvanced();
+    }
+
 }

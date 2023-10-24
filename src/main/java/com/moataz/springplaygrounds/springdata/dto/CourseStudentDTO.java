@@ -9,7 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CourseStudentDTO {
     String courseName;
-    String startDate;
     String studentName;
-
 }

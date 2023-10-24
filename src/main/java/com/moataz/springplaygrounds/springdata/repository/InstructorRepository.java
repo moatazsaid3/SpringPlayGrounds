@@ -1,5 +1,6 @@
 package com.moataz.springplaygrounds.springdata.repository;
 
+import com.moataz.springplaygrounds.springdata.dto.InstructorStudentCourseDTO;
 import com.moataz.springplaygrounds.springdata.entities.Instructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,14 +14,14 @@ public interface InstructorRepository extends JpaRepository<Instructor, UUID> {
             """
 
                   
-                select i.firstName || ' ' || i.lastName as instructorName, s.firstName || ' ' || s.lastName , c.name as studentName 
+                select new com.moataz.springplaygrounds.springdata.dto.InstructorStudentCourseDTO(i.firstName || ' ' || i.lastName, c.name , LISTAGG(s.firstName || ' ' || s.lastName, ', ') WITHIN GROUP (ORDER BY (s.firstName)) ) as studentName 
                 from  Instructor i 
-                left join i.courses c 
+                join i.courses c 
                 join c.students as s 
-         
+                GROUP BY i.firstName || ' ' || i.lastName, c.name
             """
     )
-    List<String[]>  getInstructorNameAndCourses();
+    List<InstructorStudentCourseDTO>  getInstructorNameAndCourses();
 
 
 }

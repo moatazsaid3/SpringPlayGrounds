@@ -1,5 +1,6 @@
 package com.moataz.springplaygrounds.springdata.controller;
 
+import com.moataz.springplaygrounds.springdata.dto.CourseInfoDTO;
 import com.moataz.springplaygrounds.springdata.dto.CourseStudentDTO;
 import com.moataz.springplaygrounds.springdata.dto.CourseInstructorDTO;
 import com.moataz.springplaygrounds.springdata.dto.UUIDDTO;
@@ -39,10 +40,11 @@ public class CourseController {
       return  courseService.getCourseNameandStudents();
 
     }
-    @GetMapping("/courseandstudentAdvanced")
-    public List<CourseStudentDTO> getCourseWithStudentAdvanced(){
-        return  courseService.getCourseNameandStudentsAdvanced();
+    @GetMapping("/courseandstudentmiddle")
+    public List<CourseInfoDTO> getCourseWithStudentAdvanced(){
+        return  courseService.getCourseStudentStartDateOnLevel();
 
     }
+
 
 }
