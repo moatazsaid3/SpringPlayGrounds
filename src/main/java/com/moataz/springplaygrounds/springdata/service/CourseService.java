@@ -3,16 +3,18 @@ package com.moataz.springplaygrounds.springdata.service;
 import com.moataz.springplaygrounds.springdata.dto.*;
 import com.moataz.springplaygrounds.springdata.entities.Course;
 import com.moataz.springplaygrounds.springdata.entities.Instructor;
-import com.moataz.springplaygrounds.springdata.dto.CourseRepository;
+import com.moataz.springplaygrounds.springdata.repository.CourseRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Log4j2
 public class CourseService {
+
     @Autowired
     CourseRepository courseRepository;
     @Autowired
@@ -59,8 +61,9 @@ public class CourseService {
 
         return courseRepository.getCourseNameAndStudents();
     }
-    public List<CourseInfoDTO> getCourseStudentStartDateOnLevel(){
-        return courseRepository.getCourseNameAndStudentsAdvanced();
+    public List<CourseStudentStartDateDTO> getCourseStudentStartDateOnLevel(){
+        return courseRepository.getCourseNameStudentsOnLevel();
     }
+
 
 }
