@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.moataz.springplaygrounds.SpringTut.dto.User;
 
@@ -14,7 +15,25 @@ public class UserService {
 
     UserValidator userValidator = new UserValidator();
 
-    List<User> users = new ArrayList<>();
+    List<User> users = new ArrayList<User>(
+            Arrays.asList(
+                    new User(
+                            1,
+                            "moataz",
+                            "said",
+                            24,
+                            "moatazsaid3@gmail.com"
+                    ),
+                    new User(
+                            2,
+                            "Ahmed",
+                            "said",
+                            34,
+                            "Ahmedsaid3@gmail.com"
+                    )
+
+            )
+    );
 
     public List<User> get() {
         return users;
@@ -35,5 +54,11 @@ public class UserService {
     public List<User> delete(int id) {
         users.remove(id);
         return users;
+    }
+    public int numberOfUsers(){
+        return  countUsers(users);
+    }
+    public int countUsers(List<User> list){
+        return  list.size();
     }
 }

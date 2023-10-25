@@ -24,7 +24,6 @@ public class CourseController {
     }
     @PostMapping
     public Course createCourse(@RequestBody CourseInstructorDTO coursDTO){
-            log.info(coursDTO);
         return courseService.create(coursDTO);
     }
     @PutMapping
@@ -42,7 +41,7 @@ public class CourseController {
     }
     @GetMapping("/courseandstudentmiddle")
     public List<CourseStudentStartDateDTO> getCourseWithStudentAdvanced(){
-        return  courseService.getCourseStudentStartDateOnLevel();
+        return courseService.getCourseStudentStartDateOnLevel();
 
     }
 
