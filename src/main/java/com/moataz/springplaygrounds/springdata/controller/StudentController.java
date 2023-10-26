@@ -3,6 +3,7 @@ package com.moataz.springplaygrounds.springdata.controller;
 import com.moataz.springplaygrounds.SpringTut.annotations.Timed;
 import com.moataz.springplaygrounds.springdata.dto.StudentDTO;
 import com.moataz.springplaygrounds.springdata.dto.UUIDDTO;
+import com.moataz.springplaygrounds.springdata.entities.Course;
 import com.moataz.springplaygrounds.springdata.entities.Student;
 import com.moataz.springplaygrounds.springdata.service.StudentService;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("student")
@@ -24,10 +26,13 @@ public class StudentController {
     public List<Student> getStudents(){
         return studentService.get();
     }
+    @GetMapping("/{id}")
+    public Student getStudentByID(@PathVariable String id){
+        return studentService.getByID(UUID.fromString(id));
+    }
     @PostMapping
     @Timed
     public Student createStudent(@RequestBody @Valid Student student){
-        log.info(student);
         return studentService.create(student);
     }
     @PutMapping

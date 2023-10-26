@@ -13,11 +13,13 @@ public class CalculatorServiceTest {
 
     @Test
     public void CalculatorService_Add_ReturnSumOfTwoNumbers() {
-
+        //Arrange
         double a = 10.0;
         double b = 5.0;
         double expected = 15.0;
+        //Action
         double actual = calculatorService.add(a, b);
+        //Assert
         Assertions.assertEquals(expected, actual);
     }
     @Test

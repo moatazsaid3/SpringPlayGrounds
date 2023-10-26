@@ -21,6 +21,7 @@ public class UserController {
     public List<User> getUser(){
         return userService.get();
     }
+
     //create a new user
     @PostMapping("")
     @Timed
@@ -37,5 +38,9 @@ public class UserController {
     @DeleteMapping("/{id}")
     public List<User> deleteUser(@PathVariable int id){
         return userService.delete(id);
+    }
+    @GetMapping("/numberofUsers")
+    public int numberOfUsers(){
+        return userService.numberOfUsers();
     }
 }

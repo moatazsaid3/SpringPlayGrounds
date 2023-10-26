@@ -1,5 +1,6 @@
 package com.moataz.springplaygrounds.springdata.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.moataz.springplaygrounds.springdata.entities.Course;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,9 @@ import java.util.UUID;
 public class CourseInstructorDTO {
     private UUID id;
     private String name;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Timestamp startDate;
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Timestamp endDate;
     private Course.CourseLevel courseLevel;
     private boolean isStarted;

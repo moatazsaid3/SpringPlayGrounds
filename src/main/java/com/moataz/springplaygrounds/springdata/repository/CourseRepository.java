@@ -28,7 +28,7 @@ public interface CourseRepository extends JpaRepository<Course, UUID> {
     @Query (
                 """
                 SELECT 
-                new com.moataz.springplaygrounds.springdata.dto.CourseStudentStartDateDTO (c.name,LISTAGG(s.firstName || ' ' || s.lastName, ', ') WITHIN GROUP (ORDER BY (s.firstName)), c.startDate) 
+                new com.moataz.springplaygrounds.springdata.dto.CourseStudentStartDateDTO (c.name,LISTAGG(s.firstName || ' ' || s.lastName, ', '), c.startDate) 
                 FROM Course c 
                 JOIN c.students s
                 WHERE c.courseLevel = 'beginner'
