@@ -23,6 +23,10 @@ public class CourseService {
     public List<Course> get() {
         return courseRepository.findAll();
     }
+    public Course getByID(UUID courseID) {
+        return courseRepository.findById(courseID).orElse(null);
+    }
+
     public  Course create(CourseInstructorDTO courseInstructorDTO) {
         Course course = courseInstructorDTO.getCourse();
         if(courseInstructorDTO.getInstructor() != null){
@@ -64,6 +68,4 @@ public class CourseService {
     public List<CourseStudentStartDateDTO> getCourseStudentStartDateOnLevel(){
         return courseRepository.getCourseNameStudentsOnLevel();
     }
-
-
 }

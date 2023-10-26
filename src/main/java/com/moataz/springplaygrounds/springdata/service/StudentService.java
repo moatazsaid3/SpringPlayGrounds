@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +23,9 @@ public class StudentService {
     public List<Student> get() {
 
         return studentRepository.findAll();
+    }
+    public Student getByID(UUID studentID) {
+        return studentRepository.findById(studentID).orElse(null);
     }
     public  Student create(Student student) {
         return  studentRepository.save(student);
@@ -45,4 +49,6 @@ public class StudentService {
                 .collect(Collectors.toList());
 
     }
+
+
 }

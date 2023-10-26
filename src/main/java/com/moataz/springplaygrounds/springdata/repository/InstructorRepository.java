@@ -12,8 +12,6 @@ public interface InstructorRepository extends JpaRepository<Instructor, UUID> {
 
     @Query(
             """
-
-                  
                 select new com.moataz.springplaygrounds.springdata.dto.InstructorStudentCourseDTO(i.firstName || ' ' || i.lastName, c.name , LISTAGG(s.firstName || ' ' || s.lastName, ', ') WITHIN GROUP (ORDER BY (s.firstName)) ) as studentName 
                 from  Instructor i 
                 join i.courses c 

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class CourseStudentStartDateDTO {
     private String courseName;
-    private String[] studentNames;
+    private String studentNames;
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Timestamp startDate;
 }

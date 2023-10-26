@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("course")
 @Log4j2
@@ -21,6 +23,10 @@ public class CourseController {
     @GetMapping
     public List<Course> getAllCourses(){
         return courseService.get();
+    }
+    @GetMapping("/{id}")
+    public Course getCourseByID(@PathVariable String id){
+        return courseService.getByID(UUID.fromString(id));
     }
     @PostMapping
     public Course createCourse(@RequestBody CourseInstructorDTO coursDTO){
