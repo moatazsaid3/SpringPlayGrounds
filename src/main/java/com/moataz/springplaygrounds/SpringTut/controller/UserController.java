@@ -18,8 +18,8 @@ public class UserController {
     private UserService userService;
     // Get all users
     @GetMapping
-    public List<User> getUser(){
-        return userService.get();
+    public List<User> getUser() throws Exception {
+        return userService.getayhaga();
     }
 
     //create a new user

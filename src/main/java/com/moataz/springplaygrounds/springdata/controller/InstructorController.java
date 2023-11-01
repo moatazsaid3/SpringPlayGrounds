@@ -47,8 +47,8 @@ public class InstructorController {
     public void deleteInstructor(@RequestBody UUIDDTO uuidDTO){
          instructorService.delete(uuidDTO);
     }
-    @GetMapping("/instructorstudentcourse")
-    public List<InstructorStudentCourseDTO> getInstructorByID(){
-        return instructorService.getInstructorStudentCourse();
+    @GetMapping("/instructorcoursestudent")
+    public List<InstructorStudentCourseDTO> getInstructorCourseStudent(){
+        return instructorService.getInstructorCourseStudent();
     }
 }

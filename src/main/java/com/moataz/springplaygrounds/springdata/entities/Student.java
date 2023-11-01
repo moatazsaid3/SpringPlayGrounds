@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 import java.util.UUID;
@@ -13,7 +15,10 @@ import java.util.UUID;
 @Entity
 @Table(name = "student")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
+
     // Declare the enum type for gender
     public enum Gender {
         male, female;

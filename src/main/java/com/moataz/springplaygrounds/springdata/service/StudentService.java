@@ -6,6 +6,7 @@ import com.moataz.springplaygrounds.springdata.dto.UUIDDTO;
 import com.moataz.springplaygrounds.springdata.entities.Course;
 import com.moataz.springplaygrounds.springdata.entities.Student;
 import com.moataz.springplaygrounds.springdata.repository.StudentRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,15 +33,19 @@ public class StudentService {
     }
 
     public Student update(Student student) {
+        if(studentRepository.findById(student.getId()).isEmpty()){
+            throw new EntityNotFoundException("Student with id " + student.getId() + " does not exist");
+        }
         return studentRepository.save(student);
     }
 
     public void delete(UUIDDTO UUIDDTO) {
+        if(studentRepository.findById(UUIDDTO.getId()).isEmpty()){
+            throw new EntityNotFoundException("Student with id " + UUIDDTO.getId() + " does not exist");
+        }
         studentRepository.deleteById(UUIDDTO.getId());
     }
-    public void addCourses(Student student, Course course){
-
-    }
+   
     public List<StudentDTO> getStudentMiddle(){
         List<Student> listOfStudents = studentRepository.getStudentMedium();
 
