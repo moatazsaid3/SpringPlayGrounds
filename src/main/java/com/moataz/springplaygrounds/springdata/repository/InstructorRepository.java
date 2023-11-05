@@ -22,4 +22,5 @@ public interface InstructorRepository extends JpaRepository<Instructor, UUID> {
     List<InstructorStudentCourseDTO>  getInstructorCourseStudent();
 
 
+    Instructor getInstructorByPhoneNumber(String phoneNumber);
 }

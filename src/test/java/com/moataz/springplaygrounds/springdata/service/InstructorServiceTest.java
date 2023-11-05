@@ -17,6 +17,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 
 //this class will be used for writing a code example from scratch in the mocking presentation
 
@@ -25,6 +26,8 @@ public class InstructorServiceTest {
 
     @Mock
     InstructorRepository instructorRepository;
+    @Mock
+    InstructorValidatorService instructorValidatorService;
 
     @InjectMocks
     @Spy
@@ -96,14 +99,14 @@ public class InstructorServiceTest {
     }
 
     @Test
-    public void InstructorService_CreateInstructor_ReturnCreatedInstructor(){
+    public void InstructorService_CreateInstructor_ReturnCreatedInstructor() throws Exception {
         //create instructor
         Instructor expectedInstructor = new Instructor(
                 UUID.fromString("c41fba26-1647-40a1-8076-9df3ea9ce7ec"),
-                "moataz",
-                "said",
-                "moatazsaid3@gmail.com",
-                "011",
+                "ahmed",
+                "sallem",
+                "ahmedsallem@gmail.com",
+                "01243981032",
                 null,
                 null
 
@@ -111,12 +114,24 @@ public class InstructorServiceTest {
 
         doReturn(expectedInstructor).when(instructorRepository).save(any());
 
+
+        doReturn(true).when(instructorValidatorService).validateEmail(any());
+        doReturn(true).when(instructorValidatorService).validatePhoneNumber(any());
+
+
+
+//        doReturn(null).when(instructorRepository).getInstructorByPhoneNumber(any());
+//        when(instructorValidatorService.validateEmail(any())).thenReturn(true);
+//        when(instructorValidatorService.validatePhoneNumber(any())).thenReturn(true);
+
+
+
         Instructor resultInstructor =  instructorService.create(expectedInstructor);
 
         assertEquals(expectedInstructor, resultInstructor );
 
     }
-    //get InstructorStu
+    //get InstructorStudent
     @Test
     public void InstructorService_getInstructorCourseStudent_ReturnStringOfInstructorStudentCourse(){
         List<InstructorStudentCourseDTO> expected = new ArrayList<>(

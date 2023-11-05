@@ -4,6 +4,8 @@ import com.moataz.springplaygrounds.SpringTut.annotations.Timed;
 import com.moataz.springplaygrounds.springdata.dto.InstructorStudentCourseDTO;
 import com.moataz.springplaygrounds.springdata.dto.UUIDDTO;
 import com.moataz.springplaygrounds.springdata.entities.Instructor;
+import com.moataz.springplaygrounds.springdata.entities.InstructorDetails;
+import com.moataz.springplaygrounds.springdata.service.InstructorDetailsService;
 import com.moataz.springplaygrounds.springdata.service.InstructorService;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +23,8 @@ public class InstructorController {
 
    @Autowired
     InstructorService instructorService;
+   @Autowired
+   InstructorDetailsService instructorDetailsService;
     // Get all instructors
     @GetMapping
     public List<Instructor> getInstructors(){
@@ -33,7 +37,7 @@ public class InstructorController {
     //create a new instructor
     @PostMapping
     @Timed
-    public Instructor createInstructor(@RequestBody @Valid Instructor instructor){
+    public Instructor createInstructor(@RequestBody @Valid Instructor instructor) throws Exception {
         log.info(instructor);
         return instructorService.create(instructor);
     }
@@ -50,5 +54,14 @@ public class InstructorController {
     @GetMapping("/instructorcoursestudent")
     public List<InstructorStudentCourseDTO> getInstructorCourseStudent(){
         return instructorService.getInstructorCourseStudent();
+    }
+
+    @PostMapping("/details")
+    public void addInstructorDetails(@RequestBody InstructorDetails instructorDetails){
+        instructorDetailsService.addDetails(instructorDetails);
+    }
+    @GetMapping("/details")
+    public InstructorDetails addInstructorDetails(@RequestBody String instructorID){
+        return  instructorDetailsService.getDetail(instructorID);
     }
 }
