@@ -19,7 +19,8 @@ public interface InstructorRepository extends JpaRepository<Instructor, UUID> {
                 GROUP BY i.firstName || ' ' || i.lastName, c.name
             """
     )
-    List<InstructorStudentCourseDTO>  getInstructorNameAndCourses();
+    List<InstructorStudentCourseDTO>  getInstructorCourseStudent();
 
 
+    Instructor getInstructorByPhoneNumber(String phoneNumber);
 }

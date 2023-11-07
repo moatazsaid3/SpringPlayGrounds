@@ -1,13 +1,18 @@
 package com.moataz.springplaygrounds.springdata.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "instructor_details")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class InstructorDetails {
 
 
@@ -21,6 +26,7 @@ public class InstructorDetails {
     @Column(name = "instructor_hobbies")
     private String instructorHobbies;
 
+    @JsonIgnore
     @OneToOne()
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
