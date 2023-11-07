@@ -5,6 +5,7 @@ import com.moataz.springplaygrounds.SpringTut.dto.User;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -18,9 +19,16 @@ public class UserController {
     private UserService userService;
     // Get all users
     @GetMapping
-    public List<User> getUser() throws Exception {
-        return userService.getayhaga();
+    public List<User> getAllUser() throws Exception {
+        return userService.getAllUser();
     }
+
+    @GetMapping("/{id}")
+    @Cacheable(value = "Users", key = "#id", unless = "#result.age > 30")
+    public User getUser(@PathVariable int id) throws Exception {
+        return userService.getUser(id);
+    }
+
 
     //create a new user
     @PostMapping("")

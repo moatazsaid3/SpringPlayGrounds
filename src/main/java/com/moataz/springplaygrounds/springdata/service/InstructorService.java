@@ -20,6 +20,7 @@ public class InstructorService {
     InstructorValidatorService instructorValidatorService;
 
     protected  boolean validateEmail(Instructor instructor){
+        System.out.println("helllo");
         return instructorValidatorService.validateEmail(instructor);
     }
     protected  boolean validatePhoneNumber(Instructor instructor){

@@ -70,7 +70,7 @@ public class UserControllerTest {
 
         //Assert
         Assertions.assertThrows(Exception.class, () -> {
-            userController.getUser().get(0);
+            userController.getAllUser().get(0);
         });
 //        assertEquals(expected, result);
 

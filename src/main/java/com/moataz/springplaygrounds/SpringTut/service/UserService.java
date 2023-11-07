@@ -2,6 +2,7 @@ package com.moataz.springplaygrounds.SpringTut.service;
 
 import com.moataz.springplaygrounds.SpringTut.validators.UserValidator;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLOutput;
@@ -12,10 +13,9 @@ import com.moataz.springplaygrounds.SpringTut.dto.User;
 
 @Service
 @Log4j2
-public class UserService {
+public class UserService  {
 
     UserValidator userValidator = new UserValidator();
-
     List<User> users = new ArrayList<User>(
             Arrays.asList(
                     new User(
@@ -36,16 +36,11 @@ public class UserService {
             )
     );
 
-    public List<User> getayhaga() throws Exception { //when its executed -> perform the method and return the mock // when its not executed return mock
-        String test = "";
-        test = test + "this got executed";
-        int x =0;
-        if(x == 0){
-
-            throw new Exception("Exception message");
-        }
-
+    public List<User> getAllUser() throws Exception { //when its executed -> perform the method and return the mock // when its not executed return mock
         return users;
+    }
+    public User getUser(int id)  {
+        return users.get(id);
     }
     public List<User> create(User user) {
         users.add(user);
