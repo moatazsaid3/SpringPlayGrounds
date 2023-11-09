@@ -20,12 +20,23 @@ public class CourseService {
     CourseRepository courseRepository;
     @Autowired
     InstructorService instructorService;
+    @Autowired
+    RedisService redisService;
 
     public List<Course> get() {
         return courseRepository.findAll();
     }
     public Course getByID(UUID courseID) {
-        return courseRepository.findById(courseID).orElse(null);
+        var cachedCourse = redisService.getValueFromRedis(courseID.toString());
+        if(cachedCourse.isPresent()){
+            System.out.println("cache hit");
+            return (Course) cachedCourse.get();
+        }else{
+            Course course = courseRepository.findById(courseID).orElse(null);
+            redisService.setValueInRedis(courseID.toString(), course);
+            System.out.println("cache miss");
+            return course;
+        }
     }
 
     public  Course create(CourseInstructorDTO courseInstructorDTO) {

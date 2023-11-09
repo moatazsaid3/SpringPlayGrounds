@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
@@ -18,7 +19,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Course {
+public class Course implements Serializable {
 
     // Declare the enum type for course level
 
@@ -46,10 +47,12 @@ public class Course {
     @Column(name = "course_started")
     private boolean isStarted;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "student_course",

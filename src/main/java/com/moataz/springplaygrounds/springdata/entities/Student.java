@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Student implements Serializable {
 
     // Declare the enum type for gender
     public enum Gender {
@@ -43,7 +44,7 @@ public class Student {
     @Column(name = "student_nat_id")
     private String natID;
 
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "students")
     private Set<Course> Courses;
 

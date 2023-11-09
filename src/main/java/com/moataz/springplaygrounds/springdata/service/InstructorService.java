@@ -18,6 +18,8 @@ public class InstructorService {
     InstructorRepository instructorRepository;
     @Autowired
     InstructorValidatorService instructorValidatorService;
+    @Autowired
+    RedisService redisService;
 
     protected  boolean validateEmail(Instructor instructor){
         System.out.println("helllo");
@@ -35,7 +37,16 @@ public class InstructorService {
         return instructorRepository.findAll();
     }
     public Instructor getInstructorByID(UUID instructorID) {
-        return instructorRepository.findById(instructorID).orElse(null);
+        var cachedInstructor = redisService.getValueFromRedis(instructorID.toString());
+        if(cachedInstructor.isPresent()){
+            System.out.println("cache hit");
+            return (Instructor) cachedInstructor.get();
+        }else{
+            Instructor instructor = instructorRepository.findById(instructorID).orElse(null);
+            redisService.setValueInRedis(instructorID.toString(),instructor);
+            System.out.println("cache miss");
+            return instructor;
+        }
     }
     public Instructor create(Instructor instructor) throws Exception {
         if(!validateEmail(instructor)){
@@ -44,9 +55,6 @@ public class InstructorService {
         if(!validatePhoneNumber(instructor)){
             throw new Exception("phone number already exists");
         }
-//        if(!validateYoutubeChannel(instructor)){
-//            return null;
-//        }
 
         return  instructorRepository.save(instructor);
     }

@@ -20,13 +20,25 @@ public class StudentService {
     StudentRepository studentRepository;
     @Autowired
     ObjectMapper objectMapper;
+    @Autowired
+    RedisService redisService;
 
     public List<Student> get() {
 
         return studentRepository.findAll();
     }
     public Student getByID(UUID studentID) {
-        return studentRepository.findById(studentID).orElse(null);
+        var cachedStudent = redisService.getValueFromRedis(studentID.toString());
+        if(cachedStudent.isPresent()){
+            System.out.println("cache hit");
+            return  (Student) cachedStudent.get();
+        }else{
+            Student student = studentRepository.findById(studentID).orElse(null);
+            redisService.setValueInRedis(studentID.toString(), student);
+            System.out.println("cache miss");
+            return student;
+        }
+
     }
     public  Student create(Student student) {
         return  studentRepository.save(student);
