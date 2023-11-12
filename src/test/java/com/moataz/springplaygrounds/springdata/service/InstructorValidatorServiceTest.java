@@ -26,6 +26,8 @@ public class InstructorValidatorServiceTest {
     @Mock
     InstructorRepository instructorRepository;
     @Mock
+    RedisService redisService;
+    @Mock
     InstructorDetailRepository instructorDetailRepository;
     @InjectMocks
     @Spy

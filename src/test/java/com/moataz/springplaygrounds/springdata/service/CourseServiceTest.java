@@ -27,6 +27,8 @@ public class CourseServiceTest {
 
     @Mock
     CourseRepository courseRepository;
+    @Mock
+    RedisService redisService;
     @Spy
     @InjectMocks
     CourseService courseService;

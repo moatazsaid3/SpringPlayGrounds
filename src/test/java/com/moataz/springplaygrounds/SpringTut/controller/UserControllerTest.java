@@ -3,6 +3,7 @@ package com.moataz.springplaygrounds.SpringTut.controller;
 import com.moataz.springplaygrounds.SpringTut.dto.User;
 import com.moataz.springplaygrounds.SpringTut.service.UserService;
 import com.moataz.springplaygrounds.springdata.customexecption.NegativeResult;
+import com.moataz.springplaygrounds.springdata.service.RedisService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,8 +23,10 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class UserControllerTest {
 
-    @Spy
+    @Mock
     UserService userService;
+    @Mock
+    RedisService redisService;
     @InjectMocks
     UserController userController = new UserController();
     @Test
@@ -52,27 +56,16 @@ public class UserControllerTest {
 //                            )
 //                )).when(userService).getayhaga();
 
-//        when(userService.getayhaga()).thenReturn(
-//                new ArrayList<>(
-//                    Arrays.asList(
-//                            new User(
-//                                    1,
-//                                    "moataz",
-//                                    "said",
-//                                    24,
-//                                    "moatazsaid3@gmail.com"
-//                            )
-//                    )
-//                )
-//        );
+        when(userService.getUser(expected.getId())).thenReturn(expected);
         //Action
 
 
         //Assert
-        Assertions.assertThrows(Exception.class, () -> {
-            userController.getAllUser().get(0);
-        });
-//        assertEquals(expected, result);
+//        Assertions.assertThrows(Exception.class, () -> {
+//            userController.getAllUser().get(0);
+//        });
+        User result = userController.getUser(expected.getId());
+        assertEquals(expected, result);
 
     }
 

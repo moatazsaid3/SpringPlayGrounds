@@ -20,6 +20,8 @@ public class StudentServiceTest {
 
     @Mock
     StudentRepository studentRepository;
+    @Mock
+    RedisService redisService;
     @Spy
     @InjectMocks
     StudentService studentService;
