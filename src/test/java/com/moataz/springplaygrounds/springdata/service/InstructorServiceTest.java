@@ -117,15 +117,15 @@ public class InstructorServiceTest {
         doReturn(expectedInstructor).when(instructorRepository).save(any());
 
 
-        doReturn(true).when(instructorService).validateEmail(any());
-        doReturn(true).when(instructorService).validatePhoneNumber(any());
+//        doReturn(true).when(instructorService).validateEmail(any());
+//        doReturn(true).when(instructorService).validatePhoneNumber(any());
 
 
 
 //        doReturn(null).when(instructorRepository).getInstructorByPhoneNumber(any());
 
-//        when(instructorService.validateEmail(any())).thenReturn(true);
-//        when(instructorService.validatePhoneNumber(any())).thenReturn(true);
+        when(instructorService.validateEmail(any())).thenReturn(true);
+        when(instructorService.validatePhoneNumber(any())).thenReturn(true);
 
 
         Instructor resultInstructor =  instructorService.create(expectedInstructor);
@@ -180,4 +180,5 @@ public class InstructorServiceTest {
 //
 //
 //    }
+
 }
