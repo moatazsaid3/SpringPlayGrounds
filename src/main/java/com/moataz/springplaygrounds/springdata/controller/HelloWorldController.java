@@ -1,6 +1,7 @@
 package com.moataz.springplaygrounds.springdata.controller;
 
 
+import com.moataz.springplaygrounds.springdata.feginclient.HelloWorldClient;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,14 @@ import org.springframework.web.client.RestTemplate;
 public class HelloWorldController {
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    HelloWorldClient helloWorldControllerClient;
 
     @GetMapping("/sayHello")
     public String sayHello(){
         System.out.println("bounced the request to the helloworld microservice");
-        return restTemplate.getForObject("http://helloworld/helloworld/hello/sayHello",String.class);
+//        return restTemplate.getForObject("http://helloworld/helloworld/hello/sayHello",String.class);
+        return helloWorldControllerClient.getHello();
     }
+
 }
